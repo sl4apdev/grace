@@ -32,8 +32,8 @@ const TEAM_MEMBERS = [
     {
         avatar: "https://i.imgur.com/YnWJkjS.png",
         name: "Rodolfo A. S. de Oliveira",
-        role: "Programming Specialist",
-        bio: "Especialista em sistemas educacionais de programação. Responsável por dar vida à BUG e torná-la a melhor mentora de código.",
+        role: "Co-founder",
+        bio: "Um estudante da Ciências da Computação aficionado em IA, banco de dados, mercado financeiro.",
         socials: [
             { icon: "github", url: "https://github.com/sl4apdev/grace" },
             { icon: "instagram", url: "https://www.instagram.com/or00ga/" }
