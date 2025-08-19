@@ -33,7 +33,7 @@ const TEAM_MEMBERS = [
         avatar: "https://i.imgur.com/YnWJkjS.png",
         name: "Rodolfo A. S. de Oliveira",
         role: "Co-founder",
-        bio: "Um estudante da Ciências da Computação aficionado em IA, banco de dados, mercado financeiro.",
+        bio: "Um estudante da Ciências da Computação aficionado em IA, banco de dados, mercado financeiro e emulação.",
         socials: [
             { icon: "github", url: "https://github.com/sl4apdev/grace" },
             { icon: "instagram", url: "https://www.instagram.com/or00ga/" }
