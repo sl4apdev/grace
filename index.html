@@ -1,0 +1,367 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grace IDE - Desperte o Programador em Você</title>
+    <meta name="description" content="Grace IDE - A IDE que não escreve código por você, mas desperta o programador que existe em você.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'sans': ['Sora', 'sans-serif'],
+              'mono': ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              primary: '#3fe9ff',
+              secondary: '#ff3f8a',
+              'bg-primary': '#0a0a0a',
+              'text-primary': '#ffffff',
+              'gray-850': '#1a1a1a',
+              'gray-950': '#0f0f0f'
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'pulse-slow': 'pulse 3s ease-in-out infinite',
+              'blob': 'blob 7s infinite',
+              'gradient': 'gradient 15s ease infinite',
+              'glow': 'glow 2s ease-in-out infinite alternate',
+              'typing': 'typing 3.5s steps(40, end), blink-caret .75s step-end infinite'
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-20px)' }
+              },
+              blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' }
+              },
+              gradient: {
+                '0%, 100%': { 'background-position': '0% 50%' },
+                '50%': { 'background-position': '100% 50%' }
+              },
+              glow: {
+                'from': { 'box-shadow': '0 0 20px -5px #3fe9ff' },
+                'to': { 'box-shadow': '0 0 40px 0px #3fe9ff' }
+              },
+              typing: {
+                'from': { width: '0' },
+                'to': { width: '100%' }
+              },
+              'blink-caret': {
+                'from, to': { 'border-color': 'transparent' },
+                '50%': { 'border-color': '#3fe9ff' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="scrollToTop()">
+                <img src="https://i.imgur.com/jLLSVvb.png" alt="Grace Logo" class="w-8 h-8">
+                <span class="text-xl font-bold text-white">Grace</span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#inicio" class="nav-link">Início</a>
+                <a href="#sobre" class="nav-link">Sobre</a>
+                <a href="#bug" class="nav-link">Conheça a BUG</a>
+                <a href="#equipe" class="nav-link">Equipe</a>
+                <button id="header-start-free-btn" class="standardized-button small">
+                    <div class="blob1"></div>
+                    <div class="inner">
+                        <span>Começar Grátis</span>
+                    </div>
+                </button>
+            </div>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-white">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </nav>
+        
+        <div id="mobile-menu" class="mobile-menu">
+            <div class="mobile-menu-content">
+                <a href="#inicio" class="mobile-nav-link">Início</a>
+                <a href="#sobre" class="mobile-nav-link">Sobre</a>
+                <a href="#bug" class="mobile-nav-link">Conheça a BUG</a>
+                <a href="#equipe" class="mobile-nav-link">Equipe</a>
+                <button id="mobile-start-free-btn" class="standardized-button small">
+                    <div class="blob1"></div>
+                    <div class="inner">
+                        <span>Começar Grátis</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Não seja mais um.<br>
+                <span class="gradient-text">Crie diferente.</span>
+            </h1>
+            <p class="hero-subtitle">A IDE que expõe sua verdadeira capacidade.</p>
+            <button class="main-hero-button group" id="main-hero-btn">
+                <div class="main-blob1"></div>
+                <div class="main-inner">
+                    <span>Welcome to Grace</span>
+                    <img 
+                        src="https://i.imgur.com/jLLSVvb.png"
+                        alt="Grace Logo"
+                        class="h-10 w-10 ml-4 transition-transform duration-300 group-hover:rotate-12 inline-block"
+                    />
+                </div>
+                <div class="main-welcome-glow"></div>
+            </button>
+        </div>
+    </section>
+
+    <section id="sobre" class="py-20 bg-gray-900 vanta-fog-container">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1">
+                    <h2 class="text-4xl lg:text-5xl font-bold mb-6">
+                        Nós não escrevemos código por você.
+                        <span class="gradient-text">Nós despertamos o programador em você.</span>
+                    </h2>
+                    <p class="text-gray-300 text-lg mb-8">
+                        Em uma era onde a programação se torna cada vez mais automatizada, Grace IDE é a porta para o futuro da programação consciente. Somos o antídoto contra a mediocridade digital. Não oferecemos atalhos - nós desenvolvemos desenvolvedores que moldam o amanhã.
+                    </p>
+                    <p class="text-gray-300 text-lg mb-8">
+                        Uma IDE inteligente que não apenas completa seu código, mas expande sua criatividade e habilidades de programação.
+                    </p>
+                    
+                    <div class="mb-8">
+                        <button id="about-welcome-btn" class="standardized-button group">
+                            <div class="blob1"></div>
+                            <div class="inner">
+                                <span>Welcome to Grace</span>
+                                <img 
+                                    src="https://i.imgur.com/jLLSVvb.png"
+                                    alt="Grace Logo"
+                                    class="h-8 w-8 ml-3 transition-transform duration-300 group-hover:rotate-12 inline-block"
+                                />
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="feature-item">
+                            <i class="fas fa-lightbulb feature-icon"></i>
+                            <div>
+                                <h3 class="feature-title">Think Different.</h3>
+                                <p class="feature-desc">Pense criativo. Fuja do feijão que nunca teve sabor. Seja brasileiro. Cada solução de sua criatividade. Simples assim.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-palette feature-icon"></i>
+                            <div>
+                                <h3 class="feature-title">Beautifully Simple.</h3>
+                                <p class="feature-desc">Code-Think Expert: linux mais, uma menor. Interface limpa. Mente livre. Código de alta qualidade, mas aplicação perfeita.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-code feature-icon"></i>
+                            <div>
+                                <h3 class="feature-title">Code Like You Mean It.</h3>
+                                <p class="feature-desc">Código com propósito verdadeiro. Forma que resolva função resolve problemas reais, construo eco projetos, sem pessoas. Sem bobeiras.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-400 text-sm mt-8">
+                        O futuro da programação está sendo escrito aqui.<br>
+                        Bem-vindo à nova era. <strong>Welcome to Grace.</strong>
+                    </p>
+                </div>
+                <div class="order-1 lg:order-2 relative flex justify-center">
+                    <div class="mascot-container-large">
+                        <div class="mascot-glow-large"></div>
+                        <img src="https://imgur.com/XuW5Q1E.png" alt="Grace Mascote" class="mascot-large floating">
+                        <div class="mascot-reflection-large"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recursos" class="py-20 bg-black">
+        <div class="container mx-auto px-6 text-center max-w-3xl">
+            <h2 id="dev-progress-title" class="text-4xl lg:text-5xl font-bold mb-8 gradient-text">
+            </h2>
+            <p id="dev-progress-p1" class="text-gray-300 text-lg mb-6"></p>
+            <p id="dev-progress-p2" class="text-gray-300 text-lg mb-6"></p>
+            <p id="dev-progress-signature" class="text-gray-400 italic text-right mb-10"></p>
+
+            <a id="dev-progress-instagram-btn" href="#" target="_blank" rel="noopener noreferrer" class="standardized-button large group">
+                <div class="blob1"></div>
+                <div class="inner">
+                    <i class="fab fa-instagram mr-3"></i>
+                    <span id="dev-progress-instagram-btn-text"></span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section id="bug" class="py-20 bg-gray-900 overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1 z-10 relative">
+                    <h2 class="text-4xl lg:text-5xl font-bold mb-6">
+                        Conheça a <span class="bug-pulse">BUG</span>
+                    </h2>
+                    <p class="text-gray-300 text-lg mb-6">
+                        Sua assistente pessoal de programação que entende seu código, seus desafios e seu potencial. 
+                        A BUG não resolve seus problemas - ela te guia para que você mesmo encontre as soluções.
+                    </p>
+                    <p class="text-gray-300 mb-8">
+                        Com capacidades contextuais avançadas e personalidade própria, a BUG adapta sua abordagem ao seu 
+                        estilo de aprendizado, tornando cada sessão de programação uma jornada de descoberta.
+                    </p>
+                    <button class="standardized-button secondary">
+                        <div class="blob1"></div>
+                        <div class="inner">
+                            <span>Ainda em treinamento!</span>
+                        </div>
+                    </button>
+                </div>
+                <div class="order-1 lg:order-2 relative">
+                    <div class="bug-visual">
+                        <div class="terminal-bg">
+                            <div class="terminal">
+                                <div class="terminal-header">
+                                    <div class="terminal-buttons">
+                                        <span class="terminal-btn red"></span>
+                                        <span class="terminal-btn yellow"></span>
+                                        <span class="terminal-btn green"></span>
+                                    </div>
+                                    <span class="terminal-title">Grace Terminal</span>
+                                </div>
+                                <div class="terminal-body">
+                                    <div class="terminal-line">
+                                        <span class="terminal-prompt">grace@ide:~$</span>
+                                        <span class="terminal-text" id="terminal-text"></span>
+                                        <span class="terminal-cursor">|</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="https://imgur.com/TdnsSp9.png" alt="BUG Mascote" class="bug-mascot">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="equipe" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl lg:text-5xl font-bold text-center mb-16 gradient-text">
+                Nossa Equipe
+            </h2>
+            <div id="team-container" class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="py-20 bg-black">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6 gradient-text">
+                Pronto para Começar?
+            </h2>
+            <p class="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+                Em desenvolvimento ativo!
+            </p>
+            <div class="flex justify-center">
+                <a id="cta-repo-link" href="#" target="_blank" rel="noopener noreferrer" class="standardized-button large">
+                    <div class="blob1"></div>
+                    <div class="inner">
+                        <i data-lucide="github" class="mr-3"></i>
+                        <span>Ver repositório</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="bg-gray-900 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="https://i.imgur.com/jLLSVvb.png" alt="Grace Logo" class="w-8 h-8">
+                        <span class="text-xl font-bold text-white">Grace IDE</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        A IDE que não escreve código por você, mas desperta o programador que existe em você.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="footer-social-link"><i data-lucide="twitter"></i></a>
+                        <a href="https://github.com/sl4apdev/grace" target="_blank" rel="noopener noreferrer" class="footer-social-link"><i data-lucide="github"></i></a>
+                        <a href="#" class="footer-social-link"><i data-lucide="discord"></i></a>
+                        <a href="#" class="footer-social-link"><i data-lucide="youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="footer-title">Links</h4>
+                    <ul id="footer-links-list" class="footer-links">
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400">
+                    &copy; 2024 Grace IDE. Todos os direitos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="dev-popup" class="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center p-4 z-[100] transition-opacity duration-300 opacity-0 pointer-events-none">
+        <div id="dev-popup-content" class="bg-gray-850 border border-gray-700 rounded-2xl p-8 max-w-lg w-full text-center relative transform scale-95 transition-all duration-300">
+            <button id="close-popup-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h2 id="popup-title" class="text-3xl font-bold mb-4 gradient-text"></h2>
+            <p id="popup-message" class="text-gray-300 text-lg mb-6"></p>
+            <p id="popup-signature" class="text-gray-400 italic"></p>
+            <a href="https://www.instagram.com/grace.ide.ai/?__pwa=1" target="_blank" rel="noopener noreferrer" class="standardized-button mt-6 group">
+                <div class="blob1"></div>
+                <div class="inner">
+                    <i class="fab fa-instagram mr-2"></i>
+                    <span>Siga no Instagram</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
