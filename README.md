@@ -1,6 +1,6 @@
 # Grace IDE | Landing Page
 
-![Grace IDE]([https://imgur.com/lgKVjdO.png](https://imgur.com/EzQmICg))
+![Grace IDE]([https://imgur.com/lgKVjdO.png])
 
 ---
 
